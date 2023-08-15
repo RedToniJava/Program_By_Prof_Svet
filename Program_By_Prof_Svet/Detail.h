@@ -4,16 +4,21 @@ using namespace System;
 
 public ref class Detail {
 private:String^ name;
-private:String^ model;
+private:int model;
+private:String^ description;
+private:String^ id;
 private:int price;
 private:int count;
-public:Detail(String^name,String^model, int price, int count);
+public:Detail(String^name,int model, String^ description, int price, int count);
 
 
 public:String^ getName();
-public:String^ getModel();
+public:int getModel();
+public:String^ getDescription();
 public:int getPrice();
 public:int getCount();
 public:String^ getInfo();
+public:String^ getId();
+public:void setId(String^id);
 };
 
