@@ -26,7 +26,7 @@ int Detail::getCount() {
 	return count;
 }
 String^ Detail::getInfo() {
-	return id+" "+name + " " + model + " цена за ед - " + price + " остаток ед - " + count + " id - " + id;
+	return id+" "+name + " " + model + " цена за ед - " + price + " остаток ед - " + count;
 }
 String^ Detail::getId() {
 	return id;

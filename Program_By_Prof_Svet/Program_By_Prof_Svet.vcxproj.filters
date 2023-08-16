@@ -32,7 +32,7 @@
     <ClInclude Include="Detail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Product.h">
+    <ClInclude Include="Product_type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Emploee.h">
@@ -55,7 +55,7 @@
     <ClCompile Include="Detail.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Product.cpp">
+    <ClCompile Include="Product_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Emploee.cpp">

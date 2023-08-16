@@ -1,21 +1,16 @@
 #pragma once
-#include"Detail.h"
-
+#include "Product_type.h"
 using namespace System;
 
-public ref class Product{
-private:int price;
-private:String^ article;
+public ref class Product {
 private:String^ name;
-private:String^ description;
-public: Product(String^ name, String^ description);
-public:cli::array<Detail^, 1>^ details= gcnew cli::array<Detail^, 1>(50);;
-public:void add_detail(Detail^ det);
-public:String^ getInfo();
+private:String^ number;
+private:String^ article;
+private:int price_details;
+private:int price_assembly;
+public:Product(String^number,String^name,String^type);
 
-public:int getPrice();
-public:String^ getName();
-public:String^ getDescription();
-public:void setPrice(int price);
+
+private:String^ getArticle();
 
 };
