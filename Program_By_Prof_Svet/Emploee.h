@@ -8,4 +8,6 @@ private:String^ name;
 private:String^ description;
 Emploee(String^ name, String^ description);
 
+public:String^ getInfo();
+
 };

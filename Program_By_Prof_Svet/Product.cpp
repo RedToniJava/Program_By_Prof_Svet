@@ -29,11 +29,10 @@ void Product::add_detail(Detail^ det) {
 }
 String^Product:: getInfo() {
 	String^ info;
-	for (int i = 0; i < 50; i++) {
-		if (details[i] != nullptr) {
-			info += details[i]->getInfo() + "\n";
-		}
-	}
+	
 	return info;
 	
+}
+void Product::setPrice(int price) {
+	this->price = price;
 }

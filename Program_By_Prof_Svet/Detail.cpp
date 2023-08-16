@@ -35,3 +35,6 @@ void Detail::setId(String^id) {
 	this->id = id;
 
 }
+void Detail::decreaseCount(int count) {
+	this->count -= count;
+}

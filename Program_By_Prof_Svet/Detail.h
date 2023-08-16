@@ -17,6 +17,7 @@ public:int getModel();
 public:String^ getDescription();
 public:int getPrice();
 public:int getCount();
+public:void decreaseCount(int count);
 public:String^ getInfo();
 public:String^ getId();
 public:void setId(String^id);

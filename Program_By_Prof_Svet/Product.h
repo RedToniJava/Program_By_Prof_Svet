@@ -16,6 +16,6 @@ public:String^ getInfo();
 public:int getPrice();
 public:String^ getName();
 public:String^ getDescription();
-
+public:void setPrice(int price);
 
 };
