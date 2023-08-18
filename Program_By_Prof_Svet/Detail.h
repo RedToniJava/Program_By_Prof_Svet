@@ -21,5 +21,6 @@ public:void decreaseCount(int count);
 public:String^ getInfo();
 public:String^ getId();
 public:void setId(String^id);
+public:void changeCount(int count);
 };
 
