@@ -3,6 +3,7 @@
 #include <string>
 #include"Detail.h"
 #include"Product_type.h"
+#include"Product_for_sale.h"
 #include"ctime"
 
 
@@ -113,9 +114,14 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::TextBox^ description_of_product;
 	private: System::Windows::Forms::TreeView^ products_tree;
 
-	private: System::Windows::Forms::TextBox^ number_product_tb;
+
 
 	private: System::Windows::Forms::GroupBox^ create_product_screen;
+	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
+	private: System::Windows::Forms::NumericUpDown^ assambly_price_updown;
+
+
+
 
 
 
@@ -155,7 +161,7 @@ namespace CppCLRWinFormsProject {
 			this->elements_of_product = (gcnew System::Windows::Forms::CheckedListBox());
 			this->create_product_btn = (gcnew System::Windows::Forms::Button());
 			this->create_product_screen = (gcnew System::Windows::Forms::GroupBox());
-			this->number_product_tb = (gcnew System::Windows::Forms::TextBox());
+			this->vScrollBar1 = (gcnew System::Windows::Forms::VScrollBar());
 			this->description_of_product = (gcnew System::Windows::Forms::TextBox());
 			this->count_of_product = (gcnew System::Windows::Forms::NumericUpDown());
 			this->apply_btn = (gcnew System::Windows::Forms::Button());
@@ -181,18 +187,21 @@ namespace CppCLRWinFormsProject {
 			this->create_products_Line_btn = (gcnew System::Windows::Forms::Button());
 			this->button11 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->assambly_price_updown = (gcnew System::Windows::Forms::NumericUpDown());
 			this->groupBox1->SuspendLayout();
+			this->create_product_screen->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->count_of_product))->BeginInit();
 			this->elements_GB->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->assambly_price_updown);
 			this->groupBox1->Controls->Add(this->cansel_button);
 			this->groupBox1->Controls->Add(this->elements_of_product);
 			this->groupBox1->Controls->Add(this->create_product_btn);
 			this->groupBox1->Controls->Add(this->create_product_screen);
-			this->groupBox1->Controls->Add(this->number_product_tb);
 			this->groupBox1->Controls->Add(this->description_of_product);
 			this->groupBox1->Controls->Add(this->count_of_product);
 			this->groupBox1->Controls->Add(this->apply_btn);
@@ -243,6 +252,7 @@ namespace CppCLRWinFormsProject {
 			// 
 			// create_product_screen
 			// 
+			this->create_product_screen->Controls->Add(this->vScrollBar1);
 			this->create_product_screen->Location = System::Drawing::Point(33, 105);
 			this->create_product_screen->Name = L"create_product_screen";
 			this->create_product_screen->Size = System::Drawing::Size(635, 603);
@@ -251,13 +261,12 @@ namespace CppCLRWinFormsProject {
 			this->create_product_screen->Text = L"Создание продукта";
 			this->create_product_screen->Visible = false;
 			// 
-			// number_product_tb
+			// vScrollBar1
 			// 
-			this->number_product_tb->Location = System::Drawing::Point(371, 17);
-			this->number_product_tb->Name = L"number_product_tb";
-			this->number_product_tb->Size = System::Drawing::Size(100, 31);
-			this->number_product_tb->TabIndex = 8;
-			this->number_product_tb->Visible = false;
+			this->vScrollBar1->Location = System::Drawing::Point(621, 12);
+			this->vScrollBar1->Name = L"vScrollBar1";
+			this->vScrollBar1->Size = System::Drawing::Size(14, 588);
+			this->vScrollBar1->TabIndex = 0;
 			// 
 			// description_of_product
 			// 
@@ -552,6 +561,13 @@ namespace CppCLRWinFormsProject {
 			this->label1->TabIndex = 12;
 			this->label1->Text = L"label1";
 			// 
+			// assambly_price_updown
+			// 
+			this->assambly_price_updown->Location = System::Drawing::Point(392, 18);
+			this->assambly_price_updown->Name = L"assambly_price_updown";
+			this->assambly_price_updown->Size = System::Drawing::Size(92, 31);
+			this->assambly_price_updown->TabIndex = 8;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -572,9 +588,11 @@ namespace CppCLRWinFormsProject {
 			this->Load += gcnew System::EventHandler(this, &Form1::load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			this->create_product_screen->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->count_of_product))->EndInit();
 			this->elements_GB->ResumeLayout(false);
 			this->elements_GB->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -609,6 +627,7 @@ namespace CppCLRWinFormsProject {
 		   
 	private:int controll_button;;
 	private:String^ type_article;
+	private:String^ product_article;
 	private:bool add_element_to_line=false;
     private:Product_type^ product_type;
 	private:Product^ product;
@@ -618,13 +637,13 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 	
 	srand(time(0));
 	controll_button = 1;
-	for (int i = 0; i < 8000; i++) {
+	for (int i = 0; i < 2000; i++) {
 		bool set_id = true;
 		
 		Detail^det= (gcnew Detail("Имя " + rand()%100,(rand()%8+1)," description", rand()%1000,  rand()%500));
 				
 		int id;
-		for (int j = 0; j < 8000; j++) {
+		for (int j = 0; j < 2000; j++) {
 			id = rand() % 899+100;
 			
 			if (Int32::Parse((det->getModel() + id.ToString())) == ids_of_details[j]) {
@@ -634,7 +653,7 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 		}
 		if (set_id) {
 		det->setId(det->getModel()+id.ToString());
-		details[i] = det;
+		details[Convert::ToInt32(det->getModel() + id.ToString())] = det;
 		
 		}
 		set_id = true;
@@ -651,6 +670,7 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 			elements_GB->Visible = true;
 		}
 		else if (sender->Equals(get_products_db_btn)) {
+			products_tree->Nodes->Clear();
 			controll_button = 2;
 			buttons_sort_invisible();
 			create_product_btn->Visible = true;
@@ -658,36 +678,20 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 			label1->Text = "error";
 			for each (String ^ key in product_types1.Keys)
 			{
-
+				//product_types1[key]->products.Keys;
 				TreeNode^ node = gcnew TreeNode(key);
-				for (int j = 0; j < product_types1[key]->getProducts()->Length; j++) {
-					if (product_types1[key]->getProducts()[j] != nullptr) {
-						TreeNode^ sub_node = gcnew TreeNode(product_types1[key]->getProducts()[j]->getArticle());
-						node->Nodes->Add(sub_node);
-					}
+				int i = 0;
+				for each (Product^p in product_types1[key]->products.Values) {
+					TreeNode^ sub_node = gcnew TreeNode(p->getArticle());
+					
+					node->Nodes->Add(sub_node);
+					
 				}
 
-				for (int k = 0; k < tree_nodes->Length; k++) {
-					if (tree_nodes[k] != nullptr && tree_nodes[k]->Text == node->Text) {
-						break;
-					}
-					else if (tree_nodes[k] == nullptr) {
-						tree_nodes[k] = node;
-						break;
-					}
-				}
+				products_tree->Nodes->Add(node);
 
 			}
-		for (int i = 0; i < tree_nodes->Length; i++) {
-			if (tree_nodes[i] == nullptr) {
-				break;
-			}
-			else if (!products_tree->Nodes->Contains(tree_nodes[i])) {
-				products_tree->Nodes->Add(tree_nodes[i]);
-			}
-		}
-
-
+	
 		elements_GB->Visible = true;
 		all_elements->Visible = false;
 		products_tree->Visible = true;
@@ -729,17 +733,13 @@ private: System::Void add_elements(System::Object^ sender, System::EventArgs^ e)
 		String^ substr;
 		
 		lables = gcnew cli::array<Label^, 1>(all_elements->CheckedItems->Count);		
-		Product^ product = (gcnew Product(Convert::ToString(product_types1[type_article]->getProducts()->Length+1), name_of_product->Text->ToString(), type_article));
+		Product^ product = (gcnew Product(Convert::ToString(product_types1[type_article]->products.Count+1), name_of_product->Text->ToString(), type_article));
 		
 		for (int i = 0; i < all_elements->CheckedItems->Count; i++) {
 			str=all_elements->CheckedItems[i]->ToString();
 			y += 25;
 			substr = str->Substring(0, 4);
-			for (int j = 0; j < details->Length; j++) {
-				if (details[j]!=nullptr&&details[j]->getId()->Equals(substr)) {
-					product->addDetail(details[j]);
 				
-			
 			Label^ label = (gcnew System::Windows::Forms::Label());
 			label->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
@@ -748,18 +748,23 @@ private: System::Void add_elements(System::Object^ sender, System::EventArgs^ e)
 			label->Name = L"label4";
 			label->Size = System::Drawing::Size(70, 25);
 			label->TabIndex = 2;
-			label->Text = details[j]->getInfo();
+			if (details.ContainsKey(Convert::ToInt32(substr))) {
+				label->Text = details[Convert::ToInt32(substr)]->getInfo();
+			}
+			else {
+				label->Text = "Нет ключа";
+
+			}
+			
 			label->Visible = true;
 
 			if (lables[i] == nullptr) {
 				lables[i] = label;
 				
-			}
-				}
-			}
+			}		
 			
 		}
-		product_types1[type_article]->addProduct(product);
+		product_types1[type_article]->products.Add(product->getArticle(), product);
 
 		for (int i = 0; i < all_elements->CheckedItems->Count; i++) {
 			if (lables[i] != nullptr) {
@@ -781,7 +786,7 @@ private: System::Void clear_this(System::Object^ sender, System::EventArgs^ e) {
 		find_textBox->Text = "";
 	}
 }
-	   //сортировка по моделям
+	   //сортировка по моделям (необходимо изменить под мар)
 private: System::Void choose_type_product(System::Object^ sender, System::EventArgs^ e) {
 	all_elements->Items->Clear();
 	if (sender == corpuses_button) {
@@ -910,8 +915,7 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 
 	}		
 	else if (controll_button=3) {
-	for (int i = 0; i < elements_of_product->CheckedItems->Count; i++) {
-		y += 25;
+			
 		for (int i = 0; i < elements_of_product->CheckedItems->Count; i++) {
 			y += 25;
 			Label^ label4 = (gcnew System::Windows::Forms::Label());
@@ -928,7 +932,7 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 			if (lables[i] == nullptr) {
 				lables[i] = label4;
 			}
-		}
+		
 		
 			NumericUpDown^ numemeric_up_down = (gcnew System::Windows::Forms::NumericUpDown());
 			numemeric_up_down->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -944,6 +948,7 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 			if (up_down_buttons[i] == nullptr) {
 				up_down_buttons[i] = numemeric_up_down;
 			}
+		
 		}
 	for (int i = 0; i < elements_of_product->CheckedItems->Count; i++) {
 		if (up_down_buttons[i] != nullptr) {
@@ -952,6 +957,7 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 
 		}
 	}
+	elements_of_product->Visible = false;
 	}
 	y = 25;
 	label1->Text =  lables->Length+ " " +up_down_buttons->Length ;
@@ -959,16 +965,9 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 
 		//найти детать по id
 private: System::Void find_item(System::Object^ sender, System::EventArgs^ e) {
-
-	if (find_textBox->Text->Length == 4) {
-
-		for (int i = 0; i < details->Length; i++) {
-			if (details[i] != nullptr && find_textBox->Text->Equals(details[i]->getId())) {
-				all_elements->Items->Clear();
-				all_elements->Items->Add(details[i]->getInfo());
-				break;
-			}
-		}
+	
+	if (find_textBox->Text->Length == 4) {	  
+		all_elements->Items->Add(details[Convert::ToInt32(find_textBox->Text)]->getInfo());		
 	}
 	else find_textBox->Text = "ошибка ввода";
 	
@@ -1010,34 +1009,18 @@ private: System::Void apply(System::Object^ sender, System::EventArgs^ e) {
 		 String^ subString;
 		 for (int i = 0; i < lables->Length; i++) {
 			 str = lables[i]->Text;
+			 label1->Text = str;
 			 subString = str->Substring(0, 4);
-			 for (int j = 0; j < details->Length; j++) {
-				 if (subString->Equals(details[j]->getId())) {
-					
-				 }
-
-			 }
+			 int count = product_types1[type_article]->products.Count;
+			 product_types1[type_article]->products[type_article +"-"+ count]->addDetail(details[Convert::ToInt32(subString)]);
+			 
 		 }
+		
 
 	 }
 	else if (controll_button == 3) {
-		String^ str;
-		String^ id;
-		for (int i = 0; i < lables->Length; i++) {
-			str = lables[i]->Text;
-			id = str->Substring(0, 4);
-			for (int j = 0; j < details->Length; j++) {
-				if (details[i] != nullptr && id->Equals(details[j]->getId())) {
-					
-					details[j]->changeCount(Convert::ToInt32(up_down_buttons[i]->Value));
-					break;
-				}
-			}
-
-		}
-		elements_GB->Visible = false;
-		groupBox1->Visible = false;
-		updateDataBase();
+		 Product_for_sale^ product_for_sale = gcnew Product_for_sale(name_of_product->Text, Convert::ToInt32(assambly_price_updown->Value), product_types1[type_article]->products[product_article]->getArticle(), product_types1[type_article]->products.Count + 1);
+		
 	}
 	
 	controll_button = 1;
@@ -1047,9 +1030,10 @@ private: System::Void apply(System::Object^ sender, System::EventArgs^ e) {
 			//обновить базу данных деталей
 	private:void updateDataBase() {
 		   all_elements->Items->Clear();
-		   for (int i = 0; i < 8000; i++) {
-			   all_elements->Items->Add(details[i]->getInfo());
-		   }
+		   for each (int key in details.Keys) {
+			   all_elements->Items->Add(details[key]->getInfo());
+		 }
+
 		   all_elements->Visible = true;
 		   buttons_sort_visible();
 	   }
@@ -1096,8 +1080,8 @@ private: System::Void work_with_db(System::Object^ sender, System::EventArgs^ e)
 }
 
 private: System::Void select_product_type(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e) {
-			create_product_screen->Controls->Clear();
-			if (e->Node->Text->Length == 10) {				
+			create_product_screen->Controls->Clear();			
+			if (e->Node->Text->Length == 10) {
 				product_type = product_types1[e->Node->Text];	
 				Label^ type = (gcnew System::Windows::Forms::Label());
 				type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -1114,12 +1098,28 @@ private: System::Void select_product_type(System::Object^ sender, System::Window
 				create_product_screen->Visible = true;
 				groupBox1->Visible = true;	
 				elements_of_product->Visible = false;
-				create_product_btn->Text = "Создать модель";
-			}			
-			
-			else if (e->Node->Text->Length > 10) {
-				
+				create_product_btn->Text = "Создать модель";	
 			}
+			else if (e->Node->Text->Length >= 10) {
+				type_article = e->Node->Text->Substring(0, 10);
+				product_article = e->Node->Text;
+				product_types1[type_article]->products[product_article]->getDetails();
+				for each (Detail ^ d in product_types1[type_article]->products[e->Node->Text]->getDetails()) {
+				if (d != nullptr) {
+					elements_of_product->Items->Add(d->getInfo());
+					create_product_btn->Text = "Добавить деталь";
+					}
+				}
+					
+				create_product_screen->Visible = true;
+				groupBox1->Visible = true;
+				elements_of_product->Visible = true;
+				
+				//label1->Text=product_types1[key]->products[e->Node->Text]->getDetails()->Length+"";
+			
+				controll_button = 3;
+				}
+						
 			
 					
 }

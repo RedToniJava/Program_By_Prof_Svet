@@ -2,7 +2,7 @@
 #include "Detail.h"
 
 
-Detail::Detail(String^ name, int model, String^ description, int price, int count) {
+Detail::Detail(String^ name, int model, String^ description, double price, int count) {
 	this->name = name;
 	this->model = model;
 	this-> description = description;
@@ -19,7 +19,7 @@ int Detail::getModel() {
 String^ Detail::getDescription() {
 	return description;
 }
-int Detail::getPrice() {
+double Detail::getPrice() {
 	return price;
 }
 int Detail::getCount() {
