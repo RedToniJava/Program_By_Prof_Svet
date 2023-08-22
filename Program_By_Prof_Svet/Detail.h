@@ -9,6 +9,7 @@ private:String^ description;
 private:String^ id;
 private:double price;
 private:int count;
+private:int count_for_create;
 public:Detail(String^name,int model, String^ description, double price, int count);
 
 
@@ -22,5 +23,8 @@ public:String^ getInfo();
 public:String^ getId();
 public:void setId(String^id);
 public:void changeCount(int count);
+public:int getCount_for_create();
+public:void setCount_for_create(int count);
+
 };
 

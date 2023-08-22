@@ -119,6 +119,7 @@ namespace CppCLRWinFormsProject {
 	private: System::Windows::Forms::GroupBox^ create_product_screen;
 	private: System::Windows::Forms::VScrollBar^ vScrollBar1;
 	private: System::Windows::Forms::NumericUpDown^ assambly_price_updown;
+	private: System::Windows::Forms::Button^ create_score_btn;
 
 
 
@@ -157,6 +158,7 @@ namespace CppCLRWinFormsProject {
 		void InitializeComponent(void)
 		{
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->assambly_price_updown = (gcnew System::Windows::Forms::NumericUpDown());
 			this->cansel_button = (gcnew System::Windows::Forms::Button());
 			this->elements_of_product = (gcnew System::Windows::Forms::CheckedListBox());
 			this->create_product_btn = (gcnew System::Windows::Forms::Button());
@@ -187,12 +189,12 @@ namespace CppCLRWinFormsProject {
 			this->create_products_Line_btn = (gcnew System::Windows::Forms::Button());
 			this->button11 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->assambly_price_updown = (gcnew System::Windows::Forms::NumericUpDown());
+			this->create_score_btn = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->BeginInit();
 			this->create_product_screen->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->count_of_product))->BeginInit();
 			this->elements_GB->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// groupBox1
@@ -214,6 +216,15 @@ namespace CppCLRWinFormsProject {
 			this->groupBox1->TabIndex = 2;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Visible = false;
+			// 
+			// assambly_price_updown
+			// 
+			this->assambly_price_updown->Location = System::Drawing::Point(392, 18);
+			this->assambly_price_updown->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
+			this->assambly_price_updown->Name = L"assambly_price_updown";
+			this->assambly_price_updown->Size = System::Drawing::Size(92, 31);
+			this->assambly_price_updown->TabIndex = 8;
+			this->assambly_price_updown->ValueChanged += gcnew System::EventHandler(this, &Form1::change_value);
 			// 
 			// cansel_button
 			// 
@@ -486,7 +497,7 @@ namespace CppCLRWinFormsProject {
 			// get_DB
 			// 
 			this->get_DB->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->get_DB->Location = System::Drawing::Point(17, 343);
+			this->get_DB->Location = System::Drawing::Point(17, 443);
 			this->get_DB->Name = L"get_DB";
 			this->get_DB->Size = System::Drawing::Size(183, 44);
 			this->get_DB->TabIndex = 2;
@@ -509,7 +520,7 @@ namespace CppCLRWinFormsProject {
 			// get_products_db_btn
 			// 
 			this->get_products_db_btn->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->get_products_db_btn->Location = System::Drawing::Point(17, 254);
+			this->get_products_db_btn->Location = System::Drawing::Point(17, 354);
 			this->get_products_db_btn->Name = L"get_products_db_btn";
 			this->get_products_db_btn->Size = System::Drawing::Size(183, 44);
 			this->get_products_db_btn->TabIndex = 4;
@@ -520,7 +531,7 @@ namespace CppCLRWinFormsProject {
 			// get_emploee_button
 			// 
 			this->get_emploee_button->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->get_emploee_button->Location = System::Drawing::Point(17, 425);
+			this->get_emploee_button->Location = System::Drawing::Point(17, 525);
 			this->get_emploee_button->Name = L"get_emploee_button";
 			this->get_emploee_button->Size = System::Drawing::Size(183, 44);
 			this->get_emploee_button->TabIndex = 5;
@@ -531,7 +542,7 @@ namespace CppCLRWinFormsProject {
 			// create_products_Line_btn
 			// 
 			this->create_products_Line_btn->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->create_products_Line_btn->Location = System::Drawing::Point(17, 172);
+			this->create_products_Line_btn->Location = System::Drawing::Point(17, 272);
 			this->create_products_Line_btn->Name = L"create_products_Line_btn";
 			this->create_products_Line_btn->Size = System::Drawing::Size(183, 44);
 			this->create_products_Line_btn->TabIndex = 6;
@@ -561,12 +572,15 @@ namespace CppCLRWinFormsProject {
 			this->label1->TabIndex = 12;
 			this->label1->Text = L"label1";
 			// 
-			// assambly_price_updown
+			// create_score_btn
 			// 
-			this->assambly_price_updown->Location = System::Drawing::Point(392, 18);
-			this->assambly_price_updown->Name = L"assambly_price_updown";
-			this->assambly_price_updown->Size = System::Drawing::Size(92, 31);
-			this->assambly_price_updown->TabIndex = 8;
+			this->create_score_btn->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->create_score_btn->Location = System::Drawing::Point(17, 201);
+			this->create_score_btn->Name = L"create_score_btn";
+			this->create_score_btn->Size = System::Drawing::Size(183, 44);
+			this->create_score_btn->TabIndex = 15;
+			this->create_score_btn->Text = L"Сформировать счет";
+			this->create_score_btn->UseVisualStyleBackColor = true;
 			// 
 			// Form1
 			// 
@@ -574,6 +588,7 @@ namespace CppCLRWinFormsProject {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->ClientSize = System::Drawing::Size(1349, 829);
+			this->Controls->Add(this->create_score_btn);
 			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->elements_GB);
@@ -588,11 +603,11 @@ namespace CppCLRWinFormsProject {
 			this->Load += gcnew System::EventHandler(this, &Form1::load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->EndInit();
 			this->create_product_screen->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->count_of_product))->EndInit();
 			this->elements_GB->ResumeLayout(false);
 			this->elements_GB->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->assambly_price_updown))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -607,6 +622,7 @@ namespace CppCLRWinFormsProject {
 	cli::array<NumericUpDown^, 1>^ up_down_buttons;
 	Generic::SortedDictionary<String^, Product_type^>product_types1;
 	Generic::SortedDictionary<int, Detail^>details;
+	Generic::SortedDictionary<String^, Product_for_sale^>sales_products;
 
 
 	//данные координат
@@ -625,12 +641,14 @@ namespace CppCLRWinFormsProject {
 
 		   */
 		   
-	private:int controll_button;;
+	private:int controll_button;
 	private:String^ type_article;
 	private:String^ product_article;
 	private:bool add_element_to_line=false;
     private:Product_type^ product_type;
 	private:Product^ product;
+	private:String^ added_product;
+	private:int full_price;
 
 	//загрузочный метод (загрузка информации из базы данных)
 private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
@@ -662,7 +680,7 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 }
 	   //показать список базу данных
 	private: System::Void get_dataBase(System::Object^ sender, System::EventArgs^ e) {
-
+		elements_of_product->Items->Clear();
 		if (sender->Equals(get_DB)) {
 			updateDataBase();
 			products_tree->Visible = false;
@@ -680,12 +698,18 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 			{
 				//product_types1[key]->products.Keys;
 				TreeNode^ node = gcnew TreeNode(key);
-				int i = 0;
+				//int i = 0;
+				label1->Text = key;
 				for each (Product^p in product_types1[key]->products.Values) {
 					TreeNode^ sub_node = gcnew TreeNode(p->getArticle());
-					
-					node->Nodes->Add(sub_node);
-					
+					label1->Text = p->getArticle();
+					for each (String^ pfs in p->sale_products.Keys) {
+						TreeNode^ sub_sub_node = gcnew TreeNode(p->sale_products[pfs]->getName());
+						sub_node->Nodes->Add(sub_sub_node);
+						label1->Text = p->sale_products[pfs]->getName();
+					}
+
+					node->Nodes->Add(sub_node);					
 				}
 
 				products_tree->Nodes->Add(node);
@@ -707,6 +731,41 @@ private: System::Void load(System::Object^ sender, System::EventArgs^ e) {
 		create_product_screen->Visible = true;
 		groupBox1->Visible = true;
 	}
+	else if (sender->Equals(create_score_btn)) {
+			products_tree->Nodes->Clear();
+			controll_button = 0;
+			add_modul_btn->Visible = true;
+			buttons_sort_invisible();
+			create_product_btn->Visible = true;
+			groupBox1->Visible = false;
+			label1->Text = "error";
+			for each (String ^ key in product_types1.Keys)
+			{
+				//product_types1[key]->products.Keys;
+				TreeNode^ node = gcnew TreeNode(key);
+				//int i = 0;
+				label1->Text = key;
+				for each (Product ^ p in product_types1[key]->products.Values) {
+					TreeNode^ sub_node = gcnew TreeNode(p->getArticle());
+					label1->Text = p->getArticle();
+					for each (String ^ pfs in p->sale_products.Keys) {
+						TreeNode^ sub_sub_node = gcnew TreeNode(p->sale_products[pfs]->getName());
+						sub_node->Nodes->Add(sub_sub_node);
+						label1->Text = p->sale_products[pfs]->getName();
+					}
+
+					node->Nodes->Add(sub_node);
+				}
+
+				products_tree->Nodes->Add(node);
+
+			}
+
+			elements_GB->Visible = true;
+			all_elements->Visible = false;
+			products_tree->Visible = true;
+
+		}
 	
 }
 
@@ -776,6 +835,36 @@ private: System::Void add_elements(System::Object^ sender, System::EventArgs^ e)
 		y = 25;
 
 	}
+	else if (controll_button == 0) {
+	/*	Label^ type = (gcnew System::Windows::Forms::Label());
+		type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(204)));
+		type->AutoSize = true;
+		type->Location = System::Drawing::Point(10, y);
+		type->Name = L"label4";
+		type->Size = System::Drawing::Size(70, 25);
+		type->TabIndex = 2;
+		type->Text = sales_products[added_product]->getInfo();
+		type->Visible = true;
+		create_product_screen->Controls->Add(type);
+
+		NumericUpDown^ numemeric_up_down = (gcnew System::Windows::Forms::NumericUpDown());
+		numemeric_up_down->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(204)));
+		numemeric_up_down->Location = System::Drawing::Point(450, y);
+		numemeric_up_down->Name = L"set_count";
+		numemeric_up_down->Size = System::Drawing::Size(50, 25);
+		numemeric_up_down->TabIndex = 0;
+		numemeric_up_down->Visible = true;
+		numemeric_up_down->ValueChanged += gcnew System::EventHandler(this, &Form1::change_value);
+		numemeric_up_down->Maximum = 100000000;
+		numemeric_up_down->Minimum = 1;
+
+		y += 25 * sales_products[added_product]->getDetails()->Length;*/
+		
+	}
+	
+
 }
 	  // очиска полей ввода
 private: System::Void clear_this(System::Object^ sender, System::EventArgs^ e) {
@@ -956,11 +1045,13 @@ private: System::Void create_new_product(System::Object^ sender, System::EventAr
 			create_product_screen->Controls->Add(lables[i]);
 
 		}
+		
 	}
 	elements_of_product->Visible = false;
 	}
 	y = 25;
 	label1->Text =  lables->Length+ " " +up_down_buttons->Length ;
+///	label1->Text = controll_button + "";
 }
 
 		//найти детать по id
@@ -985,6 +1076,7 @@ private: System::Void close(System::Object^ sender, System::EventArgs^ e) {
 
 			//добавление нового типа продукции (применить)
 private: System::Void apply(System::Object^ sender, System::EventArgs^ e) {
+
 	
 	//добавление новой линейки продукции
 	 if (controll_button == 1) {
@@ -1004,12 +1096,12 @@ private: System::Void apply(System::Object^ sender, System::EventArgs^ e) {
 	
 
 	}
-	 else if (controll_button = 2) {
+	 else if (controll_button ==2) {
 		 String^ str;
 		 String^ subString;
 		 for (int i = 0; i < lables->Length; i++) {
 			 str = lables[i]->Text;
-			 label1->Text = str;
+			// label1->Text = str;
 			 subString = str->Substring(0, 4);
 			 int count = product_types1[type_article]->products.Count;
 			 product_types1[type_article]->products[type_article +"-"+ count]->addDetail(details[Convert::ToInt32(subString)]);
@@ -1019,11 +1111,28 @@ private: System::Void apply(System::Object^ sender, System::EventArgs^ e) {
 
 	 }
 	else if (controll_button == 3) {
-		 Product_for_sale^ product_for_sale = gcnew Product_for_sale(name_of_product->Text, Convert::ToInt32(assambly_price_updown->Value), product_types1[type_article]->products[product_article]->getArticle(), product_types1[type_article]->products.Count + 1);
+		 if (name_of_product->Text->Length < 10) {
+			 Product_for_sale^ product_for_sale = gcnew Product_for_sale(name_of_product->Text, Convert::ToInt32(assambly_price_updown->Value), product_types1[type_article]->products[product_article]->getArticle(), product_types1[type_article]->products[product_article]->sale_products.Count + 1);
+
+
+			 for (int i = 0; i < lables->Length; i++) {
+				 String^ substr = lables[i]->Text->Substring(0, 4);
+				 cout << i << endl;
+				 product_for_sale->addDetail(details[Convert::ToInt32(substr)], Convert::ToInt32(up_down_buttons[i]->Value));
+			 }
+			 product_for_sale->setPrice();
+			 product_types1[type_article]->products[product_article]->sale_products.Add(product_for_sale->getName(), product_for_sale);
+			 sales_products.Add(product_for_sale->getName(), product_for_sale);
+			 label1->Text = product_types1[type_article]->products[product_article]->sale_products.Count + "";
+		 }
+		 else { name_of_product->Text = "Имя модели должно быть меньше 10 симворлов"; }
+
+
 		
 	}
+	 elements_of_product->Items->Clear();
+	 label1->Text = controll_button + "";
 	
-	controll_button = 1;
 	
 }
 
@@ -1080,45 +1189,104 @@ private: System::Void work_with_db(System::Object^ sender, System::EventArgs^ e)
 }
 
 private: System::Void select_product_type(System::Object^ sender, System::Windows::Forms::TreeViewEventArgs^ e) {
-			create_product_screen->Controls->Clear();			
-			if (e->Node->Text->Length == 10) {
-				product_type = product_types1[e->Node->Text];	
-				Label^ type = (gcnew System::Windows::Forms::Label());
-				type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-					static_cast<System::Byte>(204)));
-				type->AutoSize = true;
-				type->Location = System::Drawing::Point(10, y);
-				type->Name = L"label4";
-				type->Size = System::Drawing::Size(70, 25);
-				type->TabIndex = 2;
-				type->Text = "серия - " + e->Node->Text;
-				type->Visible = true;
-				type_article = e->Node->Text;
-				create_product_screen->Controls->Add(type);
-				create_product_screen->Visible = true;
-				groupBox1->Visible = true;	
-				elements_of_product->Visible = false;
-				create_product_btn->Text = "Создать модель";	
-			}
-			else if (e->Node->Text->Length >= 10) {
-				type_article = e->Node->Text->Substring(0, 10);
-				product_article = e->Node->Text;
-				product_types1[type_article]->products[product_article]->getDetails();
-				for each (Detail ^ d in product_types1[type_article]->products[e->Node->Text]->getDetails()) {
-				if (d != nullptr) {
-					elements_of_product->Items->Add(d->getInfo());
-					create_product_btn->Text = "Добавить деталь";
-					}
+			create_product_screen->Controls->Clear();	
+			if (controll_button == 0) {
+				if (e->Node->Text->Length < 10) {
+					added_product = e->Node->Text;
 				}
-					
-				create_product_screen->Visible = true;
-				groupBox1->Visible = true;
-				elements_of_product->Visible = true;
 				
-				//label1->Text=product_types1[key]->products[e->Node->Text]->getDetails()->Length+"";
-			
-				controll_button = 3;
+			}
+			else {
+				if (e->Node->Text->Length == 10) {
+					product_type = product_types1[e->Node->Text];
+					Label^ type = (gcnew System::Windows::Forms::Label());
+					type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+						static_cast<System::Byte>(204)));
+					type->AutoSize = true;
+					type->Location = System::Drawing::Point(10, y);
+					type->Name = L"label4";
+					type->Size = System::Drawing::Size(70, 25);
+					type->TabIndex = 2;
+					type->Text = "серия - " + e->Node->Text;
+					type->Visible = true;
+					type_article = e->Node->Text;
+					create_product_screen->Controls->Add(type);
+					create_product_screen->Visible = true;
+					groupBox1->Visible = true;
+					elements_of_product->Visible = false;
+					create_product_btn->Text = "Создать модель";
 				}
+				else if (e->Node->Text->Length > 10) {
+					type_article = e->Node->Text->Substring(0, 10);
+					product_article = e->Node->Text;
+					product_types1[type_article]->products[product_article]->getDetails();
+					for each (Detail ^ d in product_types1[type_article]->products[e->Node->Text]->getDetails()) {
+						if (d != nullptr && !elements_of_product->Items->Contains(d->getInfo())) {
+
+							elements_of_product->Items->Add(d->getInfo());
+
+						}
+					}
+					create_product_btn->Text = "Добавить деталь";
+					create_product_screen->Visible = true;
+					groupBox1->Visible = true;
+					elements_of_product->Visible = true;
+
+					//label1->Text=product_types1[key]->products[e->Node->Text]->getDetails()->Length+"";
+
+					controll_button = 3;
+				}
+				else if (e->Node->Text->Length < 10) {
+					//elements_of_product->Visible = false;
+					create_product_screen->Visible = true;
+					groupBox1->Visible = true;
+
+					y = 30;
+
+
+					for (int i = 0; i < sales_products[e->Node->Text]->getDetails()->Length; i++) {
+						if (sales_products[e->Node->Text]->getDetails()[i] != nullptr) {
+							Detail^ det = sales_products[e->Node->Text]->getDetails()[i];
+							Label^ type = (gcnew System::Windows::Forms::Label());
+							type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+								static_cast<System::Byte>(204)));
+							type->AutoSize = true;
+							type->Location = System::Drawing::Point(10, y);
+							type->Name = L"label4";
+							type->Size = System::Drawing::Size(70, 25);
+							type->TabIndex = 2;
+							type->Text = det->getId() + " : "
+								+ det->getName() + " модель - " + det->getModel()
+								+ " необходимо - " + det->getCount_for_create()
+								+ " на складе - " + det->getCount();
+							type->Visible = true;
+							create_product_screen->Controls->Add(type);
+
+
+							y += 25;
+						}
+						else break;
+					}
+					y = 25;
+					Label^ type = (gcnew System::Windows::Forms::Label());
+					type->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.00F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+						static_cast<System::Byte>(204)));
+					type->AutoSize = true;
+					type->Location = System::Drawing::Point(400, y);
+					type->Name = L"label4";
+					type->Size = System::Drawing::Size(70, 25);
+					type->TabIndex = 2;
+					type->Text = "Стоимость деталей - " + sales_products[e->Node->Text]->getDetailsPrice() +
+						"\n Стоимость сборки - " + sales_products[e->Node->Text]->getAssemblyPrice() +
+						"\n Себестоимость - " + sales_products[e->Node->Text]->getFullPrice();
+					type->Visible = true;
+
+					create_product_screen->Controls->Add(type);
+					label1->Text = "complete";
+					y = 30;
+
+				}
+			}
 						
 			
 					
@@ -1128,6 +1296,9 @@ private: System::Void add_product_to_line(System::Object^ sender, System::EventA
 	
 }
 
+private: System::Void change_value(System::Object^ sender, System::EventArgs^ e) {
+	
+}
 };
 
 

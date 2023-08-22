@@ -41,3 +41,9 @@ void Detail::decreaseCount(int count) {
 void Detail::changeCount(int count) {
 	this->count +=count;
 }
+int Detail::getCount_for_create() {
+	return count_for_create;
+}
+void Detail::setCount_for_create(int count) {
+	count_for_create = count;
+}

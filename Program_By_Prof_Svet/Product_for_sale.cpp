@@ -13,9 +13,15 @@ Product_for_sale::Product_for_sale(String^ name,int assembly,String^article,int 
 
 
 void Product_for_sale::setPrice() {
-	for each (Detail ^ d in details.Keys) {
-		details_price += (d->getPrice() * details[d]);
-}
+	for (int i = 0; i < details->Length; i++) {
+		if (details[i] != nullptr) {
+			details_price += (details[i]->getPrice()* details[i]->getCount_for_create());
+		}
+		else if (details[i] == nullptr) {
+			break;
+		}
+	}
+	
 
 }
 int Product_for_sale::getAssemblyPrice() {
@@ -26,4 +32,38 @@ double Product_for_sale::getDetailsPrice() {
 }
 double Product_for_sale::getFullPrice() {
 	return assembly_price + details_price;
+}
+String^ Product_for_sale::getArticle() {
+	return article;
+}
+String^ Product_for_sale::getName() {
+	return name;
+}
+void Product_for_sale::addDetail(Detail^ d,int count) {
+	for (int i = 0; i < details->Length; i++) {
+		if (details[i] == nullptr) {
+			d->setCount_for_create(count);
+			details[i] = d;
+			break;
+		}
+	}
+
+}
+cli::array<Detail^, 1>^ Product_for_sale::getDetails() {
+	return details;
+}
+String^ Product_for_sale::getInfo() {
+	for (int i = 0; i < details->Length; i++) {
+		if (details[i] != nullptr) {
+			
+			info += details[i]->getId() + " : "
+				+ details[i]->getName() + " модель - " + details[i]->getModel()
+				+ " необходимо - " + details[i]->getCount_for_create()
+				+ " на складе - " + details[i]->getCount()+"\n";
+			
+		}
+		
+		else break;
+	}
+	info += "Стоимость деталей - " + details_price + "\n Cтоимость сборки - " + assembly_price + "\n Себестоимость - " + (assembly_price + details_price);
 }
