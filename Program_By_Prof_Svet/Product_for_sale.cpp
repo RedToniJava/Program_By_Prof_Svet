@@ -53,6 +53,7 @@ cli::array<Detail^, 1>^ Product_for_sale::getDetails() {
 	return details;
 }
 String^ Product_for_sale::getInfo() {
+	info = "";
 	for (int i = 0; i < details->Length; i++) {
 		if (details[i] != nullptr) {
 			
@@ -66,4 +67,5 @@ String^ Product_for_sale::getInfo() {
 		else break;
 	}
 	info += "Стоимость деталей - " + details_price + "\n Cтоимость сборки - " + assembly_price + "\n Себестоимость - " + (assembly_price + details_price);
+	return info;
 }
